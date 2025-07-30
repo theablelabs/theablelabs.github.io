@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Able Labs - Marketing Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(15, 20, 25, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        nav.scrolled {
+            background: rgba(15, 20, 25, 0.95);
+            padding: 15px 50px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #64ffda;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #64ffda;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(100, 255, 218, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 0 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 .italic {
+            font-style: italic;
+            color: #64ffda;
+        }
+
+        .hero h1 .underline {
+            text-decoration: underline;
+            text-decoration-color: #64ffda;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0f1419;
+        }
+
+        .btn-primary:hover {
+            background: #64ffda;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #0f1419;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 20px;
+            background: rgba(26, 35, 50, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats h2 {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #64ffda;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .services-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 80px;
+            opacity: 0.9;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(26, 35, 50, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(26, 35, 50, 0.8);
+            border-color: rgba(100, 255, 218, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #64ffda;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Industries Section */
+        .industries {
+            padding: 100px 20px;
+            background: rgba(26, 35, 50, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .industries h2 {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .industries-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 80px;
+            opacity: 0.9;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .industry-item {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .industry-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .industry-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #64ffda;
+        }
+
+        .industry-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .industry-item p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 60px;
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            background: rgba(26, 35, 50, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 0 2px #64ffda;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .security-check {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .security-check label {
+            margin-bottom: 10px;
+        }
+
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .captcha-image {
+            background: linear-gradient(45deg, #2a3441, #1e2832);
+            border: 2px solid #64ffda;
+            border-radius: 8px;
+            padding: 15px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #64ffda;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            user-select: none;
+            min-width: 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .captcha-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .captcha-refresh {
+            background: transparent;
+            border: 2px solid #64ffda;
+            color: #64ffda;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .captcha-refresh:hover {
+            background: #64ffda;
+            color: #0f1419;
+            transform: rotate(180deg);
+        }
+
+        .captcha-input {
+            flex: 1;
+            max-width: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: #64ffda;
+            color: #0f1419;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: #4fd3b8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 20px 40px;
+            background: rgba(15, 20, 25, 0.9);
+            text-align: center;
+        }
+
+        .footer-logo {
+            border: 3px solid white;
+            padding: 20px 40px;
+            display: inline-block;
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .footer-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .footer-stats {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .footer-stats strong {
+            color: #64ffda;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+
+            .services h2,
+            .industries h2,
+            .contact h2,
+            .stats h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">THE ABLE LABS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>We develop <span class="italic">organic marketing<br>strategies</span><br>that <span class="underline">impact</span></h1>
+            <p>We are a full-service marketing agency based in Los Angeles that specializes in building scalable organic growth systems. We've earned recognition for driving millions of organic views and delivering exceptional ROI through data-driven organic strategies. Our approach combines authentic content creation with organic reach optimization to transform your business goals into sustainable, long-term results.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">LET'S WORK TOGETHER</a>
+                <a href="#services" class="btn btn-secondary">VIEW SERVICES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <h2>ACHIEVEMENTS</h2>
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">6M+</span>
+                <div class="stat-label">Organic Campaign Views Per Campaign</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">80,000%+</span>
+                <div class="stat-label">Organic Social Media Growth</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10,000%</span>
+                <div class="stat-label">Organic Web Visibility Growth</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">$0.30</span>
+                <div class="stat-label">Lowest CPM in the US</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>SERVICES</h2>
+        <p class="services-subtitle">Full-suite marketing solutions from strategy to execution</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>Organic Growth Strategies</h3>
+                <p>Expert organic marketing, SEO optimization, and authentic content strategies to build sustainable traffic and long-term engagement without paid ads.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Organic Social Media</h3>
+                <p>Authentic social media growth through strategic organic content, community building, and engagement optimization across all platforms.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Organic Content Creation</h3>
+                <p>High-quality, authentic content that naturally engages your audience and drives organic conversions across all channels.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Branding</h3>
+                <p>Complete brand identity development from logo design to brand guidelines and positioning for authentic market presence.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>SEO & Web Development</h3>
+                <p>Custom websites optimized for organic search visibility and e-commerce solutions that convert organic traffic into customers.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👥</div>
+                <h3>Organic Influencer Marketing</h3>
+                <p>Strategic partnerships with authentic influencers to organically amplify your brand reach and build genuine credibility.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Organic Business Development</h3>
+                <p>Sustainable growth strategies and organic business development to scale your operations through authentic market expansion.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>Organic Growth Consulting</h3>
+                <p>Expert consultation and strategic planning focused on organic growth optimization and sustainable business expansion.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>Organic Automation Tools</h3>
+                <p>Custom automation solutions designed to streamline organic growth processes and improve authentic engagement efficiency.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
+        <h2>CLIENT INDUSTRIES</h2>
+        <p class="industries-subtitle">We work with diverse industries, bringing specialized expertise to each sector</p>
+        <div class="industries-grid">
+            <div class="industry-item">
+                <div class="industry-icon">❤️</div>
+                <h3>Healthcare</h3>
+                <p>Medical & Health Services</p>
+            </div>
+            <div class="industry-item">
+                <div class="industry-icon">📊</div>
+                <h3>Finance</h3>
+                <p>Financial Services & Fintech</p>
+            </div>
+            <div class="industry-item">
+                <div class="industry-icon">💻</div>
+                <h3>Technology</h3>
+                <p>Tech Startups & SaaS</p>
+            </div>
+            <div class="industry-item">
+                <div class="industry-icon">🛒</div>
+                <h3>E-commerce</h3>
+                <p>Online Retail & Brands</p>
+            </div>
+            <div class="industry-item">
+                <div class="industry-icon">🎵</div>
+                <h3>K-Pop</h3>
+                <p>Entertainment & Music</p>
+            </div>
+            <div class="industry-item">
+                <div class="industry-icon">🤝</div>
+                <h3>Consulting</h3>
+                <p>Business Consulting</p>
+            </div>
+            <div class="industry-item">
+                <div class="industry-icon">💄</div>
+                <h3>Beauty</h3>
+                <p>Cosmetics & Beauty Brands</p>
+            </div>
+            <div class="industry-item">
+                <div class="industry-icon">🏪</div>
+                <h3>Small Business</h3>
+                <p>Local & Regional Businesses</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>LET'S WORK TOGETHER</h2>
+        <p class="contact-subtitle">Ready to transform your marketing strategy? Get in touch.</p>
+        <div class="contact-form">
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="security-check">
+                    <label for="captcha">Security Check *</label>
+                    <p>Please enter the code shown below:</p>
+                    <div class="captcha-container">
+                        <div class="captcha-image" id="captcha-display"></div>
+                        <button type="button" class="captcha-refresh" id="refresh-captcha" title="Refresh CAPTCHA">↻</button>
+                        <input type="text" id="captcha" name="captcha" class="captcha-input" placeholder="Enter code" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">THE ABLE LABS</div>
+        <p class="footer-description">Los Angeles-based marketing agency specializing in organic growth strategies and sustainable business expansion.</p>
+        <p class="footer-stats">We've created <strong>millions of organic views</strong> from authentic campaigns and achieved <strong>80,000%+ organic social media growth</strong> through data-driven organic strategies.</p>
+        <p class="footer-copyright">© 2025 THE ABLE LABS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // CAPTCHA System
+        let currentCaptcha = '';
+        
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = captcha;
+            document.getElementById('captcha-display').textContent = captcha;
+        }
+
+        // Initialize CAPTCHA on page load
+        generateCaptcha();
+
+        // Refresh CAPTCHA button
+        document.getElementById('refresh-captcha').addEventListener('click', generateCaptcha);
+
+        // Form submission with email functionality
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate CAPTCHA
+            const enteredCaptcha = document.getElementById('captcha').value.toUpperCase();
+            if (enteredCaptcha !== currentCaptcha) {
+                alert('CAPTCHA verification failed. Please try again.');
+                generateCaptcha();
+                document.getElementById('captcha').value = '';
+                return;
+            }
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Prepare email data
+            const emailData = {
+                to: 'rachel@theablelabs.com',
+                subject: `New Contact Form Submission from ${data.name}`,
+                message: `
+                    Name: ${data.name}
+                    Email: ${data.email}
+                    Company: ${data.company || 'Not provided'}
+                    
+                    Message:
+                    ${data.message}
+                    
+                    Submitted at: ${new Date().toLocaleString()}
+                `
+            };
+            
+            // Send email (using EmailJS or similar service)
+            sendEmail(emailData);
+        });
+
+        // Email sending function
+        async function sendEmail(emailData) {
+            try {
+                // For demonstration, we'll show the data that would be sent
+                // In a real implementation, you'd use a service like EmailJS, Formspree, or a backend API
+                
+                console.log('Email data that would be sent:', emailData);
+                
+                // Simulate email sending
+                const response = await simulateEmailSend(emailData);
+                
+                if (response.success) {
+                    // Show success message
+                    showSuccessMessage();
+                    
+                    // Reset form and generate new CAPTCHA
+                    document.querySelector('form').reset();
+                    generateCaptcha();
+                } else {
+                    throw new Error('Email sending failed');
+                }
+                
+            } catch (error) {
+                console.error('Error sending email:', error);
+                alert('There was an error sending your message. Please try again or contact us directly at rachel@theablelabs.com');
+            }
+        }
+
+        // Simulate email sending (replace with actual email service)
+        function simulateEmailSend(emailData) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Simulate successful email sending
+                    resolve({ success: true });
+                }, 1000);
+            });
+        }
+
+        // Success message display
+        function showSuccessMessage() {
+            // Create success overlay
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(15, 20, 25, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            const message = document.createElement('div');
+            message.style.cssText = `
+                background: rgba(26, 35, 50, 0.9);
+                padding: 40px;
+                border-radius: 15px;
+                text-align: center;
+                max-width: 500px;
+                border: 2px solid #64ffda;
+            `;
+            
+            message.innerHTML = `
+                <div style="font-size: 3rem; color: #64ffda; margin-bottom: 20px;">✓</div>
+                <h3 style="color: #64ffda; margin-bottom: 15px; font-size: 1
