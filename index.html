@@ -228,7 +228,81 @@
             opacity: 0.9;
         }
 
-        /* Services Section */
+        /* Brands Section */
+        .brands {
+            padding: 80px 20px;
+            background: rgba(15, 20, 25, 0.7);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .brands h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            color: white;
+        }
+
+        .brands-scroll {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 120px;
+        }
+
+        .brands-track {
+            display: flex;
+            align-items: center;
+            animation: scroll-brands 30s linear infinite;
+            width: calc(200px * 12); /* Adjust based on number of logos */
+            height: 100%;
+        }
+
+        .brand-item {
+            flex-shrink: 0;
+            width: 200px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 30px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            background: rgba(26, 35, 50, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .brand-item:hover {
+            opacity: 1;
+        }
+
+        .brand-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s ease;
+        }
+
+        .brand-item:hover img {
+            filter: brightness(1) invert(0);
+        }
+
+        @keyframes scroll-brands {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Pause animation on hover */
+        .brands-scroll:hover .brands-track {
+            animation-play-state: paused;
+        }
         .services {
             padding: 100px 20px;
             max-width: 1400px;
@@ -364,148 +438,63 @@
             opacity: 0.9;
         }
 
-        .contact-form {
+        .contact-cta {
             background: rgba(26, 35, 50, 0.6);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 50px;
+            padding: 60px;
             max-width: 800px;
             margin: 0 auto;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 0 2px #64ffda;
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .security-check {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-
-        .security-check label {
-            margin-bottom: 10px;
-        }
-
-        .captcha-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .captcha-image {
-            background: linear-gradient(45deg, #2a3441, #1e2832);
-            border: 2px solid #64ffda;
-            border-radius: 8px;
-            padding: 15px 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            color: #64ffda;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            user-select: none;
-            min-width: 120px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.1);
         }
 
-        .captcha-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .captcha-refresh {
-            background: transparent;
-            border: 2px solid #64ffda;
-            color: #64ffda;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .contact-description {
             font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0.9;
         }
 
-        .captcha-refresh:hover {
-            background: #64ffda;
-            color: #0f1419;
-            transform: rotate(180deg);
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
-        .captcha-input {
-            flex: 1;
-            max-width: 120px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 18px;
-            background: #64ffda;
-            color: #0f1419;
-            border: none;
-            border-radius: 5px;
+        .btn-large {
+            padding: 20px 40px;
             font-size: 18px;
             font-weight: bold;
-            cursor: pointer;
+            border-radius: 8px;
+            text-decoration: none;
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
-        .btn-submit:hover {
-            background: #4fd3b8;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        .btn-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info {
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            padding-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            font-size: 16px;
+        }
+
+        .contact-info p {
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .contact-info strong {
+            color: #64ffda;
         }
 
         /* Footer */
@@ -572,12 +561,18 @@
                 font-size: 3rem;
             }
 
-            .form-row {
-                grid-template-columns: 1fr;
+            .contact-cta {
+                padding: 40px 30px;
             }
 
-            .contact-form {
-                padding: 30px;
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
             .services h2,
@@ -606,8 +601,10 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>We develop <span class="italic">organic marketing<br>strategies</span><br>that <span class="underline">impact</span></h1>
-            <p>We are a full-service marketing agency based in Los Angeles that specializes in building scalable organic growth systems. We've earned recognition for driving millions of organic views and delivering exceptional ROI through data-driven organic strategies. Our approach combines authentic content creation with organic reach optimization to transform your business goals into sustainable, long-term results.</p>
+            <br>
+            <h1>We develop <br><span class="italic">marketing strategies</span><br>that <span class="underline">impact</span></h1>
+            <p>We are a full-service marketing agency based in Los Angeles that specializes in developing custom business tools and scalable growth systems. We focus on establishing long-term marketing partnerships rather than one-time campaigns, working collaboratively to maximize ROI through strategic planning and execution.<br><br>
+Our approach combines authentic content creation with systematic optimization to transform your business goals into sustainable, long-term results. We don't just execute your ideas. We actively suggest solutions, analyze opportunities, and develop comprehensive strategies that evolve with your business needs.</p>
             <div class="hero-buttons">
                 <a href="#contact" class="btn btn-primary">LET'S WORK TOGETHER</a>
                 <a href="#services" class="btn btn-secondary">VIEW SERVICES</a>
@@ -638,6 +635,41 @@
         </div>
     </section>
 
+    <!-- Brands Section -->
+    <section class="brands">
+        <h2>RECENT BRANDS & PARTNERS</h2>
+        <div class="brands-scroll">
+            <div class="brands-track">
+                <!-- First set of logos -->
+                <div class="brand-item">
+                    <img src="organacell.png" alt="Organacell">
+                </div>
+                <div class="brand-item">
+                    <img src="signiel logo.jpg" alt="Signiel Hotel">
+                </div>
+                <div class="brand-item">
+                    <img src="handys logo.png" alt="Handys">
+                </div>
+                <div class="brand-item">
+                    <img src="versa dental_White_1.png" alt="Versa Dental Studio">
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="brand-item">
+                    <img src="organacell.png" alt="Organacell">
+                </div>
+                <div class="brand-item">
+                    <img src="signiel logo.jpg" alt="Signiel Hotel">
+                </div>
+                <div class="brand-item">
+                    <img src="handys logo.png" alt="Handys">
+                </div>
+                <div class="brand-item">
+                    <img src="versa dental_White_1.png" alt="Versa Dental Studio">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="services">
         <h2>SERVICES</h2>
@@ -645,12 +677,12 @@
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">📈</div>
-                <h3>Organic Growth Strategies</h3>
+                <h3>Long-term Growth Strategies</h3>
                 <p>Expert organic marketing, SEO optimization, and authentic content strategies to build sustainable traffic and long-term engagement without paid ads.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🚀</div>
-                <h3>Organic Social Media</h3>
+                <h3>Social Media Management</h3>
                 <p>Authentic social media growth through strategic organic content, community building, and engagement optimization across all platforms.</p>
             </div>
             <div class="service-card">
@@ -670,13 +702,13 @@
             </div>
             <div class="service-card">
                 <div class="service-icon">👥</div>
-                <h3>Organic Influencer Marketing</h3>
-                <p>Strategic partnerships with authentic influencers to organically amplify your brand reach and build genuine credibility.</p>
+                <h3>Influencer Marketing & Long-term Content Partnerships</h3>
+                <p>Strategic partnerships with authentic influencers to amplify your brand reach and build genuine credibility.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🚀</div>
-                <h3>Organic Business Development</h3>
-                <p>Sustainable growth strategies and organic business development to scale your operations through authentic market expansion.</p>
+                <h3>Business Development</h3>
+                <p>Sustainable growth strategies and business development to scale your operations through authentic market expansion.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">💡</div>
@@ -685,8 +717,8 @@
             </div>
             <div class="service-card">
                 <div class="service-icon">🤖</div>
-                <h3>Organic Automation Tools</h3>
-                <p>Custom automation solutions designed to streamline organic growth processes and improve authentic engagement efficiency.</p>
+                <h3>Custom Automation Tools</h3>
+                <p>Custom automation solutions designed to streamline growth processes and improve authentic engagement efficiency.</p>
             </div>
         </div>
     </section>
@@ -742,45 +774,19 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2>LET'S WORK TOGETHER</h2>
-        <p class="contact-subtitle">Ready to transform your marketing strategy? Get in touch.</p>
-        <div class="contact-form">
-            <form>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <div class="security-check">
-                    <label for="captcha">Security Check *</label>
-                    <p>Please enter the code shown below:</p>
-                    <div class="captcha-container">
-                        <div class="captcha-image" id="captcha-display"></div>
-                        <button type="button" class="captcha-refresh" id="refresh-captcha" title="Refresh CAPTCHA">↻</button>
-                        <input type="text" id="captcha" name="captcha" class="captcha-input" placeholder="Enter code" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn-submit">SEND MESSAGE</button>
-            </form>
+        <div class="contact-cta">
+            <p class="contact-description">Ready to transform your marketing strategy? Get in touch.<br>Tell us about your project and goals.</p>
+            <div class="contact-buttons">
+                <a href="https://airtable.com/appkgFWMrwyKvRARW/pagSW7m0SypsmKi1X/form" target="_blank" class="btn btn-primary btn-large">MAKE INQUIRY</a>
+                <a href="mailto:contact@theablelabs.com" class="btn btn-secondary btn-large">EMAIL DIRECTLY</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-logo">THE ABLE LABS</div>
-        <p class="footer-description">Los Angeles-based marketing agency specializing in organic growth strategies and sustainable business expansion.</p>
+        <p class="footer-description">Los Angeles-based marketing agency specializing in organic growth strategies and sustainable business expansion.<br><br>Contact: contact@theablelabs.com</p>
         <p class="footer-stats">We've created <strong>millions of organic views</strong> from authentic campaigns and achieved <strong>80,000%+ organic social media growth</strong> through data-driven organic strategies.</p>
         <p class="footer-copyright">© 2025 THE ABLE LABS. All rights reserved.</p>
     </footer>
@@ -809,129 +815,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        // CAPTCHA System
-        let currentCaptcha = '';
-        
-        function generateCaptcha() {
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            let captcha = '';
-            for (let i = 0; i < 6; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            currentCaptcha = captcha;
-            document.getElementById('captcha-display').textContent = captcha;
-        }
-
-        // Initialize CAPTCHA on page load
-        generateCaptcha();
-
-        // Refresh CAPTCHA button
-        document.getElementById('refresh-captcha').addEventListener('click', generateCaptcha);
-
-        // Form submission with email functionality
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate CAPTCHA
-            const enteredCaptcha = document.getElementById('captcha').value.toUpperCase();
-            if (enteredCaptcha !== currentCaptcha) {
-                alert('CAPTCHA verification failed. Please try again.');
-                generateCaptcha();
-                document.getElementById('captcha').value = '';
-                return;
-            }
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Prepare email data
-            const emailData = {
-                to: 'rachel@theablelabs.com',
-                subject: `New Contact Form Submission from ${data.name}`,
-                message: `
-                    Name: ${data.name}
-                    Email: ${data.email}
-                    Company: ${data.company || 'Not provided'}
-                    
-                    Message:
-                    ${data.message}
-                    
-                    Submitted at: ${new Date().toLocaleString()}
-                `
-            };
-            
-            // Send email (using EmailJS or similar service)
-            sendEmail(emailData);
-        });
-
-        // Email sending function
-        async function sendEmail(emailData) {
-            try {
-                // For demonstration, we'll show the data that would be sent
-                // In a real implementation, you'd use a service like EmailJS, Formspree, or a backend API
-                
-                console.log('Email data that would be sent:', emailData);
-                
-                // Simulate email sending
-                const response = await simulateEmailSend(emailData);
-                
-                if (response.success) {
-                    // Show success message
-                    showSuccessMessage();
-                    
-                    // Reset form and generate new CAPTCHA
-                    document.querySelector('form').reset();
-                    generateCaptcha();
-                } else {
-                    throw new Error('Email sending failed');
-                }
-                
-            } catch (error) {
-                console.error('Error sending email:', error);
-                alert('There was an error sending your message. Please try again or contact us directly at rachel@theablelabs.com');
-            }
-        }
-
-        // Simulate email sending (replace with actual email service)
-        function simulateEmailSend(emailData) {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    // Simulate successful email sending
-                    resolve({ success: true });
-                }, 1000);
-            });
-        }
-
-        // Success message display
-        function showSuccessMessage() {
-            // Create success overlay
-            const overlay = document.createElement('div');
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(15, 20, 25, 0.95);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                animation: fadeIn 0.3s ease;
-            `;
-            
-            const message = document.createElement('div');
-            message.style.cssText = `
-                background: rgba(26, 35, 50, 0.9);
-                padding: 40px;
-                border-radius: 15px;
-                text-align: center;
-                max-width: 500px;
-                border: 2px solid #64ffda;
-            `;
-            
-            message.innerHTML = `
-                <div style="font-size: 3rem; color: #64ffda; margin-bottom: 20px;">✓</div>
-                <h3 style="color: #64ffda; margin-bottom: 15px; font-size: 1
+    </script>
+</body>
+</html>
